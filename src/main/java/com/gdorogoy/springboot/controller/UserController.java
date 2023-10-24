@@ -5,6 +5,7 @@ import com.gdorogoy.springboot.entity.User;
 import com.gdorogoy.springboot.exception.ErrorDetails;
 import com.gdorogoy.springboot.exception.ResourceNotFoundException;
 import com.gdorogoy.springboot.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class UserController {
 
     // build create User REST API
     @PostMapping
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO user){
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO user){
         UserDTO savedUser = userService.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
